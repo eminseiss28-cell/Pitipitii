@@ -1,32 +1,31 @@
 import os
-import re
+import requests
 import json
+import shutil
 
-# linkler.json dosyasını oku
-with open('linkler.json', 'r', encoding='utf-8') as f:
-    config = json.load(f)
+# Senin istediğin sitelerin kaynak kodları (Kekik ve Nikstream'den referans)
+SOURCES = {
+    "DiziPal": "https://raw.githubusercontent.com/sarapcanagii/Pitipitii/main/DiziPal/src/main/kotlin/com/pitipitii/DiziPal.kt",
+    "InatBox": "https://raw.githubusercontent.com/sarapcanagii/Pitipitii/main/InatBox/src/main/kotlin/com/pitipitii/InatBox.kt"
+}
 
-def update_provider_url(site_name, new_url):
-    # Bu fonksiyon, ilgili klasördeki .kt (Kotlin) dosyasını bulur ve linki günceller
-    base_path = site_name
-    for root, dirs, files in os.walk(base_path):
-        for file in files:
-            if file.endswith(".kt"):
-                file_path = os.path.join(root, file)
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                
-                # mainUrl = "..." veya baseUrl = "..." kalıbını bul ve değiştir
-                # Regex ile tırnak içindeki linki güncelliyoruz
-                new_content = re.sub(r'(mainUrl|baseUrl)\s*=\s*".*?"', f'\\1 = "{new_url}"', content)
-                
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    f.write(new_content)
-                print(f"✅ {site_name} güncellendi: {new_url}")
+with open('linkler.json', 'r') as f:
+    target_sites = json.load(f)
 
-# Tüm siteleri tek tek gez ve güncelle
-for site, data in config.items():
-    if os.path.exists(site):
-        update_provider_url(site, data['current_url'])
-    else:
-        print(f"❌ {site} klasörü bulunamadı, atlanıyor.")
+for site, url in target_sites.items():
+    print(f"🚀 {site} hazırlanıyor...")
+    
+    # 1. Klasör yapısını otomatik kur (Sen uğraşma diye)
+    path = f"{site}/src/main/kotlin/com/emin"
+    os.makedirs(path, exist_ok=True)
+    
+    # 2. Kaynak kodu internetten çek
+    if site in SOURCES:
+        source_code = requests.get(SOURCES[site]).text
+        # Linki senin verdiğinle değiştir
+        updated_code = source_code.replace('mainUrl = "', f'mainUrl = "{url}')
+        
+        # 3. Senin repona yaz
+        with open(f"{path}/{site}.kt", "w") as f:
+            f.write(updated_code)
+        print(f"✅ {site} klasörü ve linki otomatik oluşturuldu.")
