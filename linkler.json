@@ -1,14 +1,32 @@
 {
-  "Dizipal": {
-    "current_url": "https://dizipal711.com",
-    "search_pattern": "dizipal[0-9]+"
-  },
-  "FilmModu": {
-    "current_url": "https://filmmodu12.com",
-    "search_pattern": "filmmodu[0-9]+"
-  },
-  "InatBox": {
-    "current_url": "https://inatbox.xyz",
-    "search_pattern": null
-  }
+  "DiziPal": "https://dizipal711.com",
+  "InatBox": "https://inatbox.xyz",
+  "Vavoo": "https://www1.vavoo.to",
+  "FilmModu": "https://www.filmmodu.group",
+  "FilmMakinesi": "https://filmmakinesi.pw",
+  "HDFilmCehennemi": "https://www.hdfilmcehennemi.life",
+  "FullHDFilmizlesene": "https://www.fullhdfilmizlesene.de",
+  "JetFilmizle": "https://jetfilmizle.de",
+  "720pIzle": "https://720pizle.org",
+  "Dizilla": "https://dizilla.com",
+  "Dizigom": "https://www.dizigom.tv",
+  "DiziBox": "https://www.dizibox.tv",
+  "Dizipub": "https://dizipub.tv",
+  "YabanciDizi": "https://yabancidizi.co",
+  "AnimeciX": "https://animecix.net",
+  "Turkanime": "https://www.turkanime.tv",
+  "AsyaFanatikleri": "https://asyafanatikleri.com",
+  "Koreanturk": "https://www.koreanturk.com",
+  "NeonSpor": "https://neonspor5.com",
+  "GolgeTV": "https://golgetv.com",
+  "RecTV": "https://rectv.com",
+  "CanliTV": "https://canlitv.com",
+  "BelgeselX": "https://belgeselx.com",
+  "KultFilmler": "https://kultfilmler.com",
+  "RareFilmm": "https://rarefilmm.com",
+  "FilmBiftek": "https://filmbiftek.net",
+  "Webteizle": "https://webteizle.com",
+  "Sinefy": "https://sinefy.com",
+  "FilmGO": "https://filmgo.org",
+  "Bicaps": "https://bicaps.net"
 }
