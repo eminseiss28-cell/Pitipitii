@@ -21,4 +21,4 @@ jobs:
           git config --local user.name "EminBot"
           git add .
           git commit -m "Otomatik Guncelleme Tamam" || echo "Degisiklik yok"
-          git push
+          git push --force origin master # Zorla gonder, cakismayi ez
