@@ -1,36 +1,24 @@
-name: Emin Otomatik Guncelleyici
-
+name: Emin_Full_Auto
 on:
   push:
-    paths:
-      - 'linkler.json' # Sen bu dosyayı her güncellediğinde bot çalışır
-  schedule:
-    - cron: '0 0 * * *' # Her gece 00:00'da otomatik kontrol yapar
-  workflow_dispatch: # Manuel çalıştırmak için buton ekler
+    paths: [ 'linkler.json' ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
-      - name: Python Kurulumu
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-          
-      - name: Linkleri Guncelle
+      - name: Botu Calistir
         run: python updater.py
-        
-      - name: Eklentileri Pisir (Build)
+      - name: Eklentiyi Pisir
         run: |
           chmod +x gradlew
           ./gradlew make
-          
-      - name: Degisiklikleri Kaydet
+      - name: Kaydet ve Gonder
         run: |
           git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.name "EminBot"
           git add .
-          git commit -m "Auto Update: Linkler yenilendi" || echo "Degisiklik yok"
+          git commit -m "Otomatik Guncelleme Tamam" || echo "Degisiklik yok"
           git push
